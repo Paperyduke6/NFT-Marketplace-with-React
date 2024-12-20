@@ -1,5 +1,7 @@
 import * as React from "react";
 import { NavigationDots } from "./NavigationDots";
+import { Link } from "react-router-dom";
+
 
 export function Header() {
   return (
