@@ -19,7 +19,7 @@ export function WalletHeader({
 }: WalletHeaderProps) {
   return (
     <div className="flex">
-      <div className="flex flex-col items-center px-1.5 pt-5 pb-3 bg-cyan-800 rounded-full h-[50px] w-[50px]">
+      <div className="flex flex-col items-left px-1.5 pt-5 pb-3 bg-cyan-800 rounded-full h-[50px] w-[50px]">
         <img
           loading="lazy"
           src={icon}

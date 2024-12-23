@@ -1,6 +1,8 @@
 import * as React from "react";
 import { WalletHeader } from "./WalletHeader";
 import { NFTDeposit } from "./NFTDeposit";
+import { useWallet } from "../wallet/WalletContext";
+
 
 export default function WalletView() {
   const walletData = {
@@ -20,9 +22,11 @@ export default function WalletView() {
     approximateUSD: "20",
   };
 
+  const { walletImages } = useWallet();
+
   return (
-    <div className="flex mx-auto w-full rounded-none max-w-[480px]">
-      <div className="flex gap-px items-start px-3 pt-9 mt-1.5 -mr-8 rounded-xl bg-neutral-300 bg-opacity-20 pb-[931px] max-md:hidden max-md:pb-24">
+    <div className="flex block object-cover mx-auto h-full w-full bg-white shadow-md rounded-md overflow-hidden flex-col items-center justify-center">
+      <div className="flex object-cover block gap-1 items-start px-2 py-2 bg-neutral-300 bg-opacity-20 rounded-md">
         <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/221e8a7c40d2496a843eb7faa5147be5ce3f41a4aeeb9e72cfcfcbb046d3a9b7?placeholderIfAbsent=true&apiKey=58edc9c75fad4de19298bedf0d7fe051"
@@ -42,9 +46,25 @@ export default function WalletView() {
           Your NFTs
         </div>
         <NFTDeposit {...depositData} />
-        <div className="self-center mt-12 text-2xl text-slate-500 max-md:mt-10">
+        {/* <div className="self-center mt-12 text-2xl text-slate-500 max-md:mt-10">
           You don't own any NFTs yet
-        </div>
+        </div> */}
+        {walletImages.length === 0 ? (
+        <div className="self-center mt-12 text-2xl text-slate-500 max-md:mt-10">
+        You don't own any NFTs yet
+      </div>
+      ) : (
+        <div className="flex flex-wrap gap-4">
+          {walletImages.map((image: string, index: number) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Wallet item ${index + 1}`}
+              className="w-24 h-24 object-cover border rounded"
+            />
+          ))}
+          </div>
+      )}
         <button className="gap-4 self-center p-6 mt-20 max-w-full text-base font-semibold bg-zinc-800 rounded-[87px] text-neutral-50 w-[248px] max-md:px-5 max-md:mt-10">
           Start shopping
         </button>
