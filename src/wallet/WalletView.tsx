@@ -25,8 +25,8 @@ export default function WalletView() {
   const { walletImages } = useWallet();
 
   return (
-    <div className="flex block object-cover mx-auto h-full w-full bg-white shadow-md rounded-md overflow-hidden flex-col items-center justify-center">
-      <div className="flex object-cover block gap-1 items-start px-2 py-2 bg-neutral-300 bg-opacity-20 rounded-md">
+    <div className="flex block object-cover shadow-md rounded-md overflow-hidden flex-col items-center justify-center">
+      <div className="flex object-cover block gap-1 items-start bg-opacity-20 rounded-md">
         <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/221e8a7c40d2496a843eb7faa5147be5ce3f41a4aeeb9e72cfcfcbb046d3a9b7?placeholderIfAbsent=true&apiKey=58edc9c75fad4de19298bedf0d7fe051"
@@ -40,7 +40,7 @@ export default function WalletView() {
           className="object-contain shrink-0 aspect-[0.7] w-[7px]"
         />
       </div>
-      <div className="flex flex-col grow shrink-0 px-7 pt-7 pb-96 bg-white rounded-3xl border-2 border-solid basis-0 border-slate-950 w-fit max-md:pb-24 max-md:pl-5 max-md:max-w-full">
+      <div className="flex flex-col grow shrink-0 px-7 pt-7 pb-10 bg-white rounded-3xl border-2 border-solid basis-0 border-slate-950 w-fit max-md:pb-24 max-md:pl-5 max-md:max-w-full">
         <WalletHeader {...walletData} />
         <div className="z-10 self-start mt-60 ml-4 text-2xl font-extrabold text-black max-md:mt-10 max-md:ml-2.5">
           Your NFTs
@@ -54,13 +54,13 @@ export default function WalletView() {
         You don't own any NFTs yet
       </div>
       ) : (
-        <div className="flex flex-wrap gap-4">
-          {walletImages.map((image: string, index: number) => (
+        <div className="flex flex-wrap flex-col gap-4">
+          {walletImages.slice(-3).map((image: string, index: number) => (
             <img
               key={index}
               src={image}
               alt={`Wallet item ${index + 1}`}
-              className="w-24 h-24 object-cover border rounded"
+              className="w-50 aspect-[5/3] object-cover border rounded"
             />
           ))}
           </div>
